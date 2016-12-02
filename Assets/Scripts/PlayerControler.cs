@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerControler : MonoBehaviour {
 
+    private Rigidbody2D myrigitbody2D;
+
     public float MoveSpeed, JumpHeight;
     public Transform groundCheck;
     public float groundCheckRadius;
@@ -15,9 +17,15 @@ public class PlayerControler : MonoBehaviour {
     public Transform firePoint;
     public GameObject ninjaStar;
 
-	// Use this for initialization
-	void Start () {
+    public float knockback;
+    public float knockbackLength;
+    public float knockbackCount;
+    public bool knockFromRigth;
+
+    // Use this for initialization
+    void Start () {
         anim = GetComponent<Animator>();
+        myrigitbody2D = GetComponent<Rigidbody2D>();
 	}
 	
     void FixedUpdate()
@@ -51,8 +59,19 @@ public class PlayerControler : MonoBehaviour {
         if (Input.GetKey(KeyCode.D))
             moveVelocity = MoveSpeed;
         //GetComponent<Rigidbody2D>().velocity = new Vector2(MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
-
-        GetComponent<Rigidbody2D>().velocity = new Vector2(moveVelocity, GetComponent<Rigidbody2D>().velocity.y);
+        if (knockbackCount <= 0)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(moveVelocity, GetComponent<Rigidbody2D>().velocity.y);
+        } else
+        {
+            if(knockFromRigth)
+            {
+                myrigitbody2D.velocity = new Vector2(-knockback, knockback);
+            }
+            if(!knockFromRigth)
+                myrigitbody2D.velocity = new Vector2(knockback, knockback);
+            knockbackCount -= Time.deltaTime;
+        }
 
         anim.SetFloat("Speed", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
 
@@ -64,6 +83,14 @@ public class PlayerControler : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.Return))
         {
             Instantiate(ninjaStar, firePoint.position, firePoint.rotation);
+        }
+
+        if (anim.GetBool("Sword"))
+            anim.SetBool("Sword",false);
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            anim.SetBool("Sword", true);
         }
     }
 }

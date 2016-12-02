@@ -40,10 +40,12 @@ public class LevelMenager : MonoBehaviour {
         player.enabled = false;
         player.GetComponent<Renderer>().enabled = false;
         Camera.isFollowing = false;
-        //player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         //gravitiStore = player.GetComponent<Rigidbody2D>().gravityScale;
         ScoreManager.score = 0;
         //player.GetComponent<Rigidbody2D>().gravityScale = 0f;
+        player.transform.position = currentCheckpoint.transform.position;
+        player.knockbackCount = 0;
 
         yield return new WaitForSeconds(respawnDelay);
         Debug.Log("Pleyer Respawn here");
@@ -53,7 +55,6 @@ public class LevelMenager : MonoBehaviour {
         Camera.isFollowing = true;
         healthManager.FullHealth();
         healthManager.isDead = false;
-        player.transform.position = currentCheckpoint.transform.position;
         Instantiate(respawnParticle, currentCheckpoint.transform.position, currentCheckpoint.transform.rotation);
     }
 }

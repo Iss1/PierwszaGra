@@ -9,9 +9,11 @@ public class EnemyHealthManager : MonoBehaviour {
 
     public int pointsOnDeath;
 
-	// Use this for initialization
-	void Start () {
-	
+    private SpawnControl spawn;
+
+    // Use this for initialization
+    void Start () {
+        spawn = FindObjectOfType<SpawnControl>();
 	}
 	
 	// Update is called once per frame
@@ -22,6 +24,7 @@ public class EnemyHealthManager : MonoBehaviour {
             Instantiate(deathEffect, transform.position, transform.rotation);
             ScoreManager.AddPoints(pointsOnDeath);
             Destroy(gameObject);
+            spawn.SpawnEnemy();
         }
 
 	}
