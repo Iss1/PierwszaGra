@@ -41,24 +41,18 @@ public class PlayerControler : MonoBehaviour {
 
         anim.SetBool("Grounded", grounded);
 
-        if (Input.GetKeyDown(KeyCode.Space) && grounded)
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
-        if (Input.GetKeyDown(KeyCode.Space) && !doubleJump && !grounded)
+        if (Input.GetButtonDown("Jump") && grounded)
+            Jump();
+            //GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
+        if (Input.GetButtonDown("Jump") && !doubleJump && !grounded)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
+            //GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
+            Jump();
             doubleJump = true;
         }
 
-        moveVelocity = 0f;
+        moveVelocity = MoveSpeed * Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetKey(KeyCode.A))
-            moveVelocity = -MoveSpeed;
-            //GetComponent<Rigidbody2D>().velocity = new Vector2(-MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
-            
-
-        if (Input.GetKey(KeyCode.D))
-            moveVelocity = MoveSpeed;
-        //GetComponent<Rigidbody2D>().velocity = new Vector2(MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
         if (knockbackCount <= 0)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(moveVelocity, GetComponent<Rigidbody2D>().velocity.y);
@@ -80,7 +74,7 @@ public class PlayerControler : MonoBehaviour {
         else if (GetComponent<Rigidbody2D>().velocity.x < 0)
             transform.localScale = new Vector3(-1f, 1f, 1f);
 
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetButtonDown("Fire1"))
         {
             Instantiate(ninjaStar, firePoint.position, firePoint.rotation);
         }
@@ -88,9 +82,14 @@ public class PlayerControler : MonoBehaviour {
         if (anim.GetBool("Sword"))
             anim.SetBool("Sword",false);
 
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetButtonDown("Fire2"))
         {
             anim.SetBool("Sword", true);
         }
+    }
+
+    void Jump()
+    {
+        GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
     }
 }

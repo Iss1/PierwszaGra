@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 9bd6cb770164b734d930c83ba498e0f8
-timeCreated: 1480691150
+timeCreated: 1480770836
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -17,6 +17,7 @@ TextureImporter:
     21300020: NinjaStar2
     21300022: Player Sword
     21300024: Exit
+    21300026: Heart
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -234,6 +235,19 @@ TextureImporter:
         y: 48
         width: 19
         height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Heart
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 34
+        width: 9
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

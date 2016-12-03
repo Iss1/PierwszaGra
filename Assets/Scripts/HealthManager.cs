@@ -14,14 +14,19 @@ public class HealthManager : MonoBehaviour {
 
     public bool isDead;
 
+    private LifeManager lifeSystem;
+
     // Use this for initialization
     void Start () {
         text = GetComponent<Text>();
 
-        playerHealth = maxPlayerHealth;
+        //playerHealth = maxPlayerHealth;
+        playerHealth = PlayerPrefs.GetInt("PlayerCurrentHealth");
 
         levelManager = FindObjectOfType<LevelMenager>();
         isDead = false;
+
+        lifeSystem = FindObjectOfType<LifeManager>();
     }
 	
 	// Update is called once per frame
@@ -30,6 +35,7 @@ public class HealthManager : MonoBehaviour {
         {
             playerHealth = 0;
             levelManager.RespawnPlayer();
+            lifeSystem.TakeLife();
             isDead = true;
         }
 
@@ -39,9 +45,11 @@ public class HealthManager : MonoBehaviour {
     public static void HurtPlayer(int damageToGive)
     {
         playerHealth -= damageToGive;
+        PlayerPrefs.SetInt("PlayerCurrentHealth", playerHealth);
     }
     public void FullHealth()
     {
-        playerHealth = maxPlayerHealth;
+        playerHealth = PlayerPrefs.GetInt("PlayerMaxHealth");
+        PlayerPrefs.SetInt("PlayerCurrentHealth", playerHealth);
     }
 }
