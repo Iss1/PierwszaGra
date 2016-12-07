@@ -22,10 +22,16 @@ public class PlayerControler : MonoBehaviour {
     public float knockbackCount;
     public bool knockFromRigth;
 
+    public bool onLadder;
+    public float climbSpeed;
+    private float climbVelocity;
+    private float gravityStore;
+
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
         myrigitbody2D = GetComponent<Rigidbody2D>();
+        gravityStore = myrigitbody2D.gravityScale;
 	}
 	
     void FixedUpdate()
@@ -86,10 +92,37 @@ public class PlayerControler : MonoBehaviour {
         {
             anim.SetBool("Sword", true);
         }
+
+        if(onLadder)
+        {
+            myrigitbody2D.gravityScale = 0f;
+            climbVelocity = climbSpeed * Input.GetAxisRaw("Vertical");
+            myrigitbody2D.velocity = new Vector2(myrigitbody2D.velocity.x, climbVelocity);
+        }
+        if(!onLadder)
+        {
+            myrigitbody2D.gravityScale = gravityStore;
+        }
     }
 
     void Jump()
     {
         GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.transform.tag == "MovingPlatform")
+        {
+            transform.parent = other.transform;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.transform.tag == "MovingPlatform")
+        {
+            transform.parent = null;
+        }
     }
 }
