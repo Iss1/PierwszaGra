@@ -27,6 +27,9 @@ public class PlayerControler : MonoBehaviour {
     private float climbVelocity;
     private float gravityStore;
 
+    private float shootDeleyCounter;
+    public float shotDelay;
+
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
@@ -47,6 +50,8 @@ public class PlayerControler : MonoBehaviour {
 
         anim.SetBool("Grounded", grounded);
 
+#if UNITY_STANDALONE || UNITY_WEBPLAYER
+
         if (Input.GetButtonDown("Jump") && grounded)
             Jump();
             //GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
@@ -57,7 +62,10 @@ public class PlayerControler : MonoBehaviour {
             doubleJump = true;
         }
 
-        moveVelocity = MoveSpeed * Input.GetAxisRaw("Horizontal");
+        //moveVelocity = MoveSpeed * Input.GetAxisRaw("Horizontal");
+        Move(Input.GetAxisRaw("Horizontal"));
+
+#endif
 
         if (knockbackCount <= 0)
         {
@@ -80,18 +88,38 @@ public class PlayerControler : MonoBehaviour {
         else if (GetComponent<Rigidbody2D>().velocity.x < 0)
             transform.localScale = new Vector3(-1f, 1f, 1f);
 
+#if UNITY_STANDALONE || UNITY_WEBPLAYER
+
         if(Input.GetButtonDown("Fire1"))
         {
-            Instantiate(ninjaStar, firePoint.position, firePoint.rotation);
+            //Instantiate(ninjaStar, firePoint.position, firePoint.rotation);
+            FireStar();
+        }
+
+        if(Input.GetButton("Fire1"))
+        {
+            shootDeleyCounter -= Time.deltaTime;
+
+            if(shootDeleyCounter <= 0)
+            {
+                shootDeleyCounter = shotDelay;
+                FireStar();
+            }
         }
 
         if (anim.GetBool("Sword"))
-            anim.SetBool("Sword",false);
+        {
+            //anim.SetBool("Sword",false);
+            ResetSword();
+        }
 
         if (Input.GetButtonDown("Fire2"))
         {
-            anim.SetBool("Sword", true);
+            //anim.SetBool("Sword", true);
+            SwordAttack();
         }
+
+#endif
 
         if(onLadder)
         {
@@ -105,9 +133,39 @@ public class PlayerControler : MonoBehaviour {
         }
     }
 
-    void Jump()
+    public void Move(float moveInput)
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
+        moveVelocity = MoveSpeed * moveInput;
+    }
+
+    public void Jump()
+    {
+        //GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
+
+        if (grounded)
+            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
+        //GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
+        if (!doubleJump && !grounded)
+        {
+            //GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
+            doubleJump = true;
+        }
+    }
+
+    public void FireStar()
+    {
+        Instantiate(ninjaStar, firePoint.position, firePoint.rotation);
+    }
+
+    public void SwordAttack()
+    {
+        anim.SetBool("Sword", true);
+    }
+
+    public void ResetSword()
+    {
+        anim.SetBool("Sword", false);
     }
 
     void OnCollisionEnter2D(Collision2D other)

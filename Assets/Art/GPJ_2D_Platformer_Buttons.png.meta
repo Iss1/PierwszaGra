@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 1d886bfc15f721845af11b2c7305d7bb
-timeCreated: 1481457739
+timeCreated: 1481461122
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -9,6 +9,12 @@ TextureImporter:
     21300004: TouchRightArrow
     21300006: TouchSword
     21300008: TouchStar
+    21300010: TappedLeft
+    21300012: TappedRight
+    21300014: TappedJump
+    21300016: TappedSword
+    21300018: TappedStar
+    21300020: Pause
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -122,6 +128,84 @@ TextureImporter:
         y: 4
         width: 14
         height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TappedLeft
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 44
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TappedRight
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 44
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TappedJump
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 24
+        width: 25
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TappedSword
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 4
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: TappedStar
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 4
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pause
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 24
+        width: 15
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

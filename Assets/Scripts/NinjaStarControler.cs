@@ -40,6 +40,10 @@ public class NinjaStarControler : MonoBehaviour {
             //ScoreManager.AddPoints(pointsForKill);
             other.GetComponent<EnemyHealthManager>().giveDamage(damageToGive);
         }
+        if (other.tag == "Boss")
+        {
+            other.GetComponent<BossHealthManager>().giveDamage(damageToGive);
+        }
         Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(gameObject);
     }

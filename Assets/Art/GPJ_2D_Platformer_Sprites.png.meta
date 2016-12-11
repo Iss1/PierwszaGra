@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 9bd6cb770164b734d930c83ba498e0f8
-timeCreated: 1481107975
+timeCreated: 1481463846
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -23,6 +23,11 @@ TextureImporter:
     21300032: FlyingEnemy2
     21300034: FlyingEnemy3
     21300036: FlyingEnemy4
+    21300038: lvl_select_1
+    21300040: lvl_select_2
+    21300042: lvl_select_3
+    21300044: lvl_select_4
+    21300046: lvl_select_lock
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -318,6 +323,71 @@ TextureImporter:
         y: 49
         width: 16
         height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lvl_select_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lvl_select_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lvl_select_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lvl_select_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lvl_select_lock
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 19
+        width: 7
+        height: 9
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

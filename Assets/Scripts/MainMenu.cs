@@ -12,12 +12,18 @@ public class MainMenu : MonoBehaviour {
 
     public int playerHealth;
 
+    public string level1Tag;
+
     public void NewGame()
     {
         PlayerPrefs.SetInt("PlayerCurrentLives", playerLives);
         PlayerPrefs.SetInt("PlayerCurrentScore", 0);
         PlayerPrefs.SetInt("PlayerCurrentHealth", playerHealth);
         PlayerPrefs.SetInt("PlayerMaxHealth", playerHealth);
+
+        PlayerPrefs.SetInt(level1Tag, 1);
+
+        PlayerPrefs.SetInt("PlayerLevelSelect", 0);
         SceneManager.LoadScene(startLevel);
     }
 
@@ -27,6 +33,14 @@ public class MainMenu : MonoBehaviour {
         PlayerPrefs.SetInt("PlayerCurrentScore", 0);
         PlayerPrefs.SetInt("PlayerCurrentHealth", playerHealth);
         PlayerPrefs.SetInt("PlayerMaxHealth", playerHealth);
+
+        PlayerPrefs.SetInt(level1Tag, 1);
+
+        if(!PlayerPrefs.HasKey("PlayerLevelSelect"))
+        {
+            PlayerPrefs.SetInt("PlayerLevelSelect", 0);
+        }
+
         SceneManager.LoadScene(levelSelect);
     }
 

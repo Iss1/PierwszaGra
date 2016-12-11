@@ -25,5 +25,10 @@ public class HurtEnemyOnContact : MonoBehaviour {
             other.GetComponent<EnemyHealthManager>().giveDamage(damageToGive);
             myrigidbody2D.velocity = new Vector2(myrigidbody2D.velocity.x, bounceOnEnemy);
         }
+
+        if(other.tag == "Boss")
+        {
+            other.GetComponent<BossHealthManager>().giveDamage(damageToGive/2);
+        }
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauzeMenu : MonoBehaviour {
 
     public string mainMenu;
+    public string levelSelect;
     public bool isPauzed;
     public GameObject pauseMenuCanvas;
 
@@ -24,8 +25,13 @@ public class PauzeMenu : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            isPauzed = !isPauzed;
+            PauzeOnPauze();
         }
+    }
+
+    public void PauzeOnPauze()
+    {
+        isPauzed = !isPauzed;
     }
 
     public void Resume()
@@ -36,6 +42,11 @@ public class PauzeMenu : MonoBehaviour {
     public void MainMenu()
     {
         SceneManager.LoadScene(mainMenu);
+    }
+
+    public void LevelSelect()
+    {
+        SceneManager.LoadScene(levelSelect);
     }
 
 }
