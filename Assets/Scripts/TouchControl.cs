@@ -46,21 +46,11 @@ public class TouchControl : MonoBehaviour {
 
     public void Jump()
     {
-        
+        player.Jump();
         if (lvlExit.playerInZone)
         {
             lvlExit.LoadScene();
         }
-        if(player.onLadder)
-        {
-            player.Climb(1);
-        }
-        player.Jump();
-    }
-
-    public void unJump()
-    {
-        player.Climb(0);
     }
 
     public void Pauze()

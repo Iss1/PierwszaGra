@@ -124,21 +124,13 @@ public class PlayerControler : MonoBehaviour {
         if(onLadder)
         {
             myrigitbody2D.gravityScale = 0f;
-            //climbVelocity = climbSpeed * Input.GetAxisRaw("Vertical");
-#if UNITY_STANDALONE || UNITY_WEBPLAYER
-            Climb(Input.GetAxisRaw("Vertical"));
-#endif
+            climbVelocity = climbSpeed * Input.GetAxisRaw("Vertical");
             myrigitbody2D.velocity = new Vector2(myrigitbody2D.velocity.x, climbVelocity);
         }
         if(!onLadder)
         {
             myrigitbody2D.gravityScale = gravityStore;
         }
-    }
-
-    public void Climb(float climbInput)
-    {
-        climbVelocity = climbSpeed * climbInput;
     }
 
     public void Move(float moveInput)
