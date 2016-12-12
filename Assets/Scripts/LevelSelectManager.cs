@@ -21,7 +21,10 @@ public class LevelSelectManager : MonoBehaviour {
     {
         for(int i=0; i< levelTags.Length; i++)
         {
-            if (PlayerPrefs.GetInt(levelTags[i]) == 0)
+            if(PlayerPrefs.GetInt(levelTags[i]) == null)
+            {
+                levelUnlocked[i] = false;
+            } else if (PlayerPrefs.GetInt(levelTags[i]) == 0)
             {
                 levelUnlocked[i] = false;
             }
