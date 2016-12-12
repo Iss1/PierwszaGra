@@ -26,7 +26,7 @@ public class LevelLoader : MonoBehaviour {
 
     public void LoadScene()
     {
-
+        PlayerPrefs.SetInt(levelTag, 1);
         SceneManager.LoadScene(levelToLoad);
     }
 
