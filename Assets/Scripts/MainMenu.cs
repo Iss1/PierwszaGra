@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour {
     public int playerHealth;
 
     public string level1Tag;
+    public string[] levelTag;
 
     public void NewGame()
     {
@@ -22,6 +23,9 @@ public class MainMenu : MonoBehaviour {
         PlayerPrefs.SetInt("PlayerMaxHealth", playerHealth);
 
         PlayerPrefs.SetInt(level1Tag, 1);
+        PlayerPrefs.SetInt(levelTag[0], 0);
+        PlayerPrefs.SetInt(levelTag[1], 0);
+        PlayerPrefs.SetInt(levelTag[2], 0);
 
         PlayerPrefs.SetInt("PlayerLevelSelect", 0);
         SceneManager.LoadScene(startLevel);
